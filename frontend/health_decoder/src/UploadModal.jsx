@@ -23,12 +23,15 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
 
     const formData = new FormData();
     formData.append("file", file);
-    
+
     // Map internal names to backend 'mode'
     const mode = selectedCategory === "medical_report" ? "report" : "bill";
 
     try {
-      const response = await fetch(`http://localhost:8000/analyze?mode=${mode}`, {
+      
+      const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
+      const response = await fetch(`${API_BASE_URL}/analyze?mode=${mode}`, {
         method: "POST",
         body: formData,
       });
@@ -36,15 +39,15 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
       if (!response.ok) throw new Error("Backend failed to respond");
 
       const result = await response.json();
-      
+
       // CRITICAL STEP: Pass the data up to App.js
       if (onAnalysisComplete) {
         onAnalysisComplete(result.analysis);
       }
-      
+
       // Close the modal so the user can see the new page
       onClose();
-      
+
     } catch (error) {
       console.error("Connection Failed:", error);
       alert("Analysis failed. Please ensure your backend server is running on port 8000.");
@@ -68,11 +71,11 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
             <button onClick={onClose} className="absolute right-6 top-6 text-slate-400 hover:text-slate-600 transition-colors">
               <X size={20} />
             </button>
-            
+
             <h3 className="mb-6 text-2xl font-bold text-slate-900">What are we analyzing?</h3>
 
             <div className="grid gap-4">
-              <button 
+              <button
                 onClick={() => handleTypeSelect("medical_report")}
                 className="flex items-center gap-4 rounded-2xl border-2 border-slate-50 p-5 hover:border-blue-600 hover:bg-blue-50/50 transition-all text-left group"
               >
@@ -85,7 +88,7 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
                 </div>
               </button>
 
-              <button 
+              <button
                 onClick={() => handleTypeSelect("medical_bill")}
                 className="flex items-center gap-4 rounded-2xl border-2 border-slate-50 p-5 hover:border-red-500 hover:bg-red-50/50 transition-all text-left group"
               >
@@ -100,12 +103,12 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
             </div>
           </>
         )}
-        <input 
-          type="file" 
-          ref={fileInputRef} 
-          className="hidden" 
-          onChange={handleFileChange} 
-          accept="image/*" 
+        <input
+          type="file"
+          ref={fileInputRef}
+          className="hidden"
+          onChange={handleFileChange}
+          accept="image/*"
         />
       </div>
     </div>
