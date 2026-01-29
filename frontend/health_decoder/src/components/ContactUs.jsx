@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link for navigation
-import { Mail, ShieldCheck, MapPin, ArrowLeft } from "lucide-react"; // Added ArrowLeft icon
+import { Link } from "react-router-dom"; 
+import { Mail, ShieldCheck, MapPin, ArrowLeft } from "lucide-react"; 
 
 export default function Contact() {
   return (
     <section className="bg-white py-24 min-h-[70vh] flex items-center" id="contact">
       <div className="mx-auto max-w-3xl px-6 text-center">
-        {/* Team Branding */}
+        
         <div className="mb-12 flex flex-col items-center">
           <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-brand text-white shadow-xl shadow-blue-100">
             <ShieldCheck size={32} />
@@ -17,7 +17,7 @@ export default function Contact() {
           </h3>
         </div>
 
-        {/* Contact Details */}
+        
         <div className="rounded-3xl border border-slate-100 bg-slate-50/50 p-10">
           <div className="flex flex-col items-center gap-6">
             <div className="flex flex-col items-center">
@@ -45,7 +45,7 @@ export default function Contact() {
           </div>
         </div>
 
-        {/* Back to Home Button */}
+        
         <div className="mt-12 flex flex-col items-center gap-6">
           <Link 
             to="/" 

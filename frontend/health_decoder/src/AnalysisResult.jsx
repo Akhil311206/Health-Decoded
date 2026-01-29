@@ -10,7 +10,7 @@ export default function AnalysisResult({ data, onReset }) {
         <ArrowLeft size={20} /> Back to Home
       </button>
 
-      {/* Header Card */}
+      
       <div className="mb-8 rounded-3xl bg-white p-8 shadow-sm border border-slate-100">
         <h2 className="text-3xl font-bold text-slate-900 mb-4">
           {isReport ? "Medical Report Analysis" : "Billing Audit Results"}
@@ -56,7 +56,7 @@ export default function AnalysisResult({ data, onReset }) {
         )}
       </div>
 
-      {/* Footer Note */}
+      
       <div className="mt-12 p-6 rounded-2xl bg-blue-50 border border-blue-100 flex gap-4 items-center">
         <Activity className="text-brand shrink-0" />
         <p className="text-sm text-blue-800">

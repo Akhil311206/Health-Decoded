@@ -5,7 +5,7 @@ import { ArrowLeft, Zap, ShieldCheck, Database } from "lucide-react";
 export default function Working() {
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
-      {/* Mini Nav */}
+      
       <nav className="border-b bg-white px-6 py-4 sticky top-0 z-50">
         <div className="mx-auto max-w-7xl">
           <Link to="/" className="flex items-center gap-2 font-bold text-slate-500 hover:text-blue-700 transition-colors" style={{ textDecoration: 'none' }}>

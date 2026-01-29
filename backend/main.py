@@ -3,7 +3,7 @@ import google.generativeai as genai
 import PIL.Image
 import io
 import os
-import json  # Step 1: Import the json library
+import json  
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 
@@ -11,9 +11,14 @@ load_dotenv("APIkey.env")
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:5173",           # Local testing
+    "https://healthdecoded.vercel.app/"
+]
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, use ["http://localhost:3000"]
+    allow_origins=origins, 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -59,7 +64,7 @@ async def analyze_document(
 
         response = model.generate_content([prompt, img])
         
-        # Step 2: Convert the AI's raw string into a real Python Dictionary
+        
         try:
             # .strip() handles any accidental whitespace the AI might add
             structured_data = json.loads(response.text.strip())

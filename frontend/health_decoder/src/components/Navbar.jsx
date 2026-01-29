@@ -3,7 +3,7 @@ import { ShieldCheck } from "lucide-react";
 import { Link } from "react-router-dom"; // Import Link
 
 export default function Navbar() {
-  // Define your navigation items with their specific paths
+  
   const navItems = [
     { name: "Home", path: "/" },
     { name: "About Us", path: "./Working" }, 
@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        {/* Logo - Wrap in Link to return home */}
+        
         <Link to="/" className="flex items-center gap-2 hover:opacity-90 transition-opacity">
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-blue-600 text-white shadow-lg shadow-blue-200">
             <ShieldCheck size={22} />
@@ -23,7 +23,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* Navigation Links */}
+        
         <div className="hidden items-center gap-8 md:flex">
           {navItems.map((item) => (
             <Link
