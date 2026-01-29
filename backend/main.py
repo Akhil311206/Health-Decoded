@@ -1,3 +1,4 @@
+from dotenv import load_dotenv
 from fastapi import FastAPI, UploadFile, File
 import google.generativeai as genai
 import PIL.Image
@@ -5,7 +6,6 @@ import io
 import os
 import json  
 from fastapi.middleware.cors import CORSMiddleware
-from dotenv import load_dotenv
 
 load_dotenv("APIkey.env")
 
