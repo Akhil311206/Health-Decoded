@@ -13,7 +13,7 @@ app = FastAPI()
 
 origins = [
     "http://localhost:5173",           # Local testing
-    "https://healthdecoded.vercel.app/"
+    "https://healthdecoded.vercel.app"
 ]
 
 app.add_middleware(
