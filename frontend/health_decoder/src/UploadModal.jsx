@@ -29,7 +29,7 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
 
     try {
       
-      const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+      const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/$/, "");
 
       const response = await fetch(`${API_BASE_URL}/analyze?mode=${mode}`, {
         method: "POST",
@@ -50,7 +50,7 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
 
     } catch (error) {
       console.error("Connection Failed:", error);
-      alert("Analysis failed. Please ensure your backend server is running on port 8000.");
+      alert("Analysis failed.");
     } finally {
       setLoading(false);
       setSelectedCategory(null); // Reset for next time

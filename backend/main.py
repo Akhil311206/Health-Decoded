@@ -12,8 +12,8 @@ load_dotenv("APIkey.env")
 app = FastAPI()
 
 origins = [
-    "http://localhost:5173",           # Local testing
     "https://healthdecoded.vercel.app"
+    "http://localhost:5173",           # Local testing
 ]
 
 app.add_middleware(
