@@ -77,3 +77,7 @@ async def analyze_document(
     except Exception as e:
         print("🔥 ERROR:", e)
         return {"error": str(e)}
+    
+@app.get("/health")
+async def health_check():
+    return {"status": "online", "team": "Syntax Killers"}
