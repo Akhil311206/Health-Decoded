@@ -21,9 +21,9 @@ export default function App() {
       />
 
       {analysisData ? (
-        <AnalysisResult 
-          data={analysisData} 
-          onReset={() => setAnalysisData(null)} 
+        <AnalysisResult
+          data={analysisData}
+          onReset={() => setAnalysisData(null)}
         />
       ) : (
         <>
@@ -54,36 +54,31 @@ export default function App() {
                 <Zap size={20} fill="currentColor" />
                 Analyze My Report
               </button>
-              
-              <div className="mt-10 flex items-center gap-6 text-sm font-medium text-slate-400">
-                <div className="flex items-center gap-1.5"><Lock size={16} /> End-to-End Encrypted</div>
-                <div className="flex items-center gap-1.5"><ShieldCheck size={16} /> HIPAA Compliant</div>
-              </div>
             </div>
           </header>
 
           <section className="bg-white py-24" id="capabilities">
             <div className="mx-auto max-w-7xl px-6 grid gap-8 md:grid-cols-3">
-              <FeatureCard 
+              <FeatureCard
                 icon={FileSearch}
                 title="ELI5 Decoder"
                 desc="Converts intimidating lab values and pathology reports into plain English that a 5-year-old could understand."
                 colorClass="bg-brand"
-                shadowClass="hover:shadow-blue-50"
+                shadowClass="hover:shadow-blue-100"
               />
-              <FeatureCard 
+              <FeatureCard
                 icon={CreditCard}
                 title="Bill Auditor"
                 desc="Automatically scans for overcharges, duplicate billing, and unbundling—errors found in over 80% of hospital bills."
                 colorClass="bg-audit-red"
-                shadowClass="hover:shadow-red-50"
+                shadowClass="hover:shadow-red-100"
               />
-              <FeatureCard 
+              <FeatureCard
                 icon={Lock}
                 title="Privacy Shield"
                 desc="Your data is yours. We use client-side redaction to scrub PII before AI processing. We never store your medical history."
                 colorClass="bg-medical-green"
-                shadowClass="hover:shadow-green-50"
+                shadowClass="hover:shadow-green-100"
               />
             </div>
           </section>
@@ -91,6 +86,18 @@ export default function App() {
       )}
 
       <Footer />
+      <section className="bg-slate-50 py-6 border-t border-slate-100">
+        <div className="mx-auto flex max-w-7xl justify-center gap-8 text-sm font-medium text-slate-500">
+          <div className="flex items-center gap-2">
+            <Lock size={16} className="text-blue-600" />
+            End-to-End Encrypted
+          </div>
+          <div className="flex items-center gap-2">
+            <ShieldCheck size={16} className="text-blue-600" />
+            HIPAA Compliant
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

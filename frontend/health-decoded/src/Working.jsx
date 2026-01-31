@@ -16,7 +16,7 @@ export default function Working() {
 
       <main className="mx-auto max-w-4xl px-6 py-16">
         <div className="mb-12">
-          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">The Pipeline: How Quasar X AI Works</h1>
+          <h1 className="text-4xl font-extrabold text-slate-900 mb-4">The Pipeline: How Health Decoded Works</h1>
           <p className="text-lg text-slate-600">A look under the hood of our medical report analysis engine.</p>
         </div>
 
@@ -57,3 +57,4 @@ export default function Working() {
     </div>
   );
 }
+

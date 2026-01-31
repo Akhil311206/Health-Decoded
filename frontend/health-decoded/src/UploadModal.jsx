@@ -6,6 +6,7 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
   const fileInputRef = useRef(null);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [language, setLanguage] = useState("English");
 
   if (!isOpen) return null;
 
@@ -28,10 +29,11 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
     const mode = selectedCategory === "medical_report" ? "report" : "bill";
 
     try {
-      
+
       const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(/\/$/, "");
 
-      const response = await fetch(`${API_BASE_URL}/analyze?mode=${mode}`, {
+      // Pass the language parameter to the backend
+      const response = await fetch(`${API_BASE_URL}/analyze?mode=${mode}&lang=${language}`, {
         method: "POST",
         body: formData,
       });
@@ -40,9 +42,16 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
 
       const result = await response.json();
 
+      if (result.error) {
+        throw new Error(result.error);
+      }
+
+      // Create a temporary URL for the uploaded file to display as preview
+      const previewUrl = URL.createObjectURL(file);
+
       // CRITICAL STEP: Pass the data up to App.js
       if (onAnalysisComplete) {
-        onAnalysisComplete(result.analysis);
+        onAnalysisComplete(result.analysis, previewUrl);
       }
 
       // Close the modal so the user can see the new page
@@ -50,7 +59,7 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
 
     } catch (error) {
       console.error("Connection Failed:", error);
-      alert("Analysis failed.");
+      alert(`Analysis failed: ${error.message}`);
     } finally {
       setLoading(false);
       setSelectedCategory(null); // Reset for next time
@@ -73,6 +82,20 @@ export default function UploadModal({ isOpen, onClose, onAnalysisComplete }) {
             </button>
 
             <h3 className="mb-6 text-2xl font-bold text-slate-900">What are we analyzing?</h3>
+
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-slate-700 mb-2">Select Language</label>
+              <select
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+                className="w-full p-3 rounded-xl border border-slate-200 text-sm font-medium focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none transition-all"
+              >
+                <option value="English">English</option>
+                <option value="Hindi">Hindi</option>
+                <option value="Spanish">Spanish</option>
+                <option value="French">French</option>
+              </select>
+            </div>
 
             <div className="grid gap-4">
               <button
